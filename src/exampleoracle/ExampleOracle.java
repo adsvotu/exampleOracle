@@ -23,6 +23,7 @@ public class ExampleOracle {
 
             Connection conn = getConnectOracle();
             
+            /*
             String sql = "SELECT * FROM Cliente WHERE nome_cliente LIKE ?";
             PreparedStatement prdStmtPesq = conn.prepareStatement(sql);
             prdStmtPesq.setString(1, "R%");
@@ -32,9 +33,9 @@ public class ExampleOracle {
                 System.out.print("Codigo: "+rsPesq.getString("Codigo_Cliente"));
                 System.out.println(" Nome: "+rsPesq.getString("Nome_Cliente"));
             }
-
+*/
             
-            
+         /*   
             String sqlUpdate = "INSERT INTO Cliente( "+
                     "Codigo_Cliente, Nome_Cliente, Endereco, Cidade, CEP, UF, CNPJ, IE) "+
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -48,6 +49,16 @@ public class ExampleOracle {
             prdStmtPost.setString(7, "32816985/7465-6");
             prdStmtPost.setString(8, "2222");
             prdStmtPost.executeUpdate();
+            
+        */            
+            String sqlUpdate = "insert into tbimoveis values (tbimoveis_seq.nextval, ?, ?)";
+            PreparedStatement prdStmtPost = conn.prepareStatement(sqlUpdate);
+            prdStmtPost.setString(1, "Maria");
+            prdStmtPost.setString(2, "RUA");
+            
+            if (prdStmtPost.executeUpdate() > 0) {
+                conn.close();
+            }
             
             
         } catch (IOException ex) {
